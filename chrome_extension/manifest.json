@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "OneClickMeeting",
+    "version": "0.1",
+    "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": ["mainpopup.js"]
+    }],
+    "action": {
+        "default_icon": "images/icon.png",
+        "default_popup": "mainpopup.html"
+    },
+    "icons": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ]
+}
