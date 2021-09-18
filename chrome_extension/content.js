@@ -14,10 +14,20 @@ var id = 0;
 
  var body = document.getElementsByTagName('body');
  var div = document.createElement('div');
- div.setAttribute("id", "video");
- var video = document.createElement('video');
+ div.setAttribute("id", "videopan");
+ var iframe = document.createElement('iframe');
+
+
+iframe.src = "https://www.youtube.com/embed/SF4aHwxHtZ0?enablejsapi=1&rel=0&showinfo=0&controls=0";
+iframe.id="featured-video";
+iframe.frameborder="0";
+div.appendChild(iframe);
+div.display='block';
+div.position='relative';
+div.padding='0 0 70% 0';
 document.body.appendChild(div);
-div.innerText="testing";
+//div.innerText="testing";
+
 //arr.forEach(element => 
 //chrome.storage.sync.set({ 'student'.concat(id): element }, function(){
 //})

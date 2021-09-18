@@ -26,11 +26,23 @@ for (i = 0; i < coll.length; i++) {
   chrome.scripting.executeScript(
     {
       target: {tabId: tabId},	
+
       files: ['content.js','jquery-3.6.0.min.js']
     },
     injectionResults
     );
  
+chrome.scripting.insertCSS(
+    {
+      target: {tabId: tabId},	
+      css: ['floating-window.css']
+    },
+    injectionResults
+    );
+
+ 
+
+
 }
 
 
