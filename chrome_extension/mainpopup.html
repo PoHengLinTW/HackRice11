@@ -17,21 +17,25 @@
     <p> NOTE: To import contact groups, please navigate to Canvas/Course/People page. </p>
     <button type="button" class="collapsible"> Starred Contacts </button>
     <div class="content">
-        <table class="starredUsers"></table>
+        <table id="starredUsers" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <input class="starredButton" type="button" value="star"/>
+                </td>
+            </tr>
+        </table>
     </div>
     <br>
     <button type="button" class="collapsible"> Groups </button>
     <div class="content">
-        <ul id="groupCollapsible">
+        <ul id="groupList">
             <li>
-                <button type="button" class="addGroup" id="adding"> Add Group </button>
-                <div id = "userinfo">
-                </div>
+                <button type="button" class="addGroup"> Add Group </button>
             </li>
         </ul>
     </div>
-     
     <script src="mainpopup.js"></script>
+
 </body>
 
 </html>

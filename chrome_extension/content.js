@@ -15,6 +15,7 @@ console.log(arr);
 
 
 //div.innerText="testing";
+/*
 var count = 0;
 arr.forEach(element => 
 {var str = "student" + count + "";
@@ -34,6 +35,7 @@ console.log("store "+count+" students");
 
 chrome.storage.local.set({ 'url': url }, function(){
 });
+*/
 /**
 console.log('Video begin ');
 chrome.storage.local.set({'video': 'videostart'}, function() {
