@@ -9,7 +9,7 @@ const io = require('socket.io')(server, {
 		methods: ["GET", "POST"]
 	}
 });
-const PORT = 8080;
+const PORT = process.env.PORT;
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
@@ -29,6 +29,7 @@ app.get('/iceserver', (req, res) => {
 })
 
 app.get('/user/:email', (req, res) => {
+	console.log(req.params['email'], userList);
 	const user = userList.find(ele => ele.mail === req.params['email'])
 	if (user) res.send(user.sid);
 	else res.send("404");
@@ -70,6 +71,10 @@ io.on('connection', (socket) => {
 				from: socket.id
 			});
 		})	
+
+		socket.on("exit", (data) => {
+			socket.to(data.to).emit("exit", socket.id);
+		})
 	})
 	socket.on("disconnect", () => {
 		console.log(socket.id + " leave ");
