@@ -1,5 +1,3 @@
-
-
 const myInput = document.getElementById('myId');
 const join = document.getElementById('join');
 const invitation = document.getElementById('otherId');
@@ -15,7 +13,7 @@ var config = {
     iceServers: [ { urls: ["stun:stun.l.google.com:19302"] } ] 
 };
 fetch('https://oneclickmeeting.tech/iceserver')
-.then(res => {return res.json()})
+.then(function(res) {return res.json()})
 .then( data => {
     config.iceServers = data;
     console.log(config)

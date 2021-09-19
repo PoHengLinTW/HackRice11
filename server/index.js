@@ -1,8 +1,14 @@
 require('dotenv').config()
 const express = require("express");
+const cors = require('cors')
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+	cors: {
+		origin: "*",
+		methods: ["GET", "POST"]
+	}
+});
 const PORT = 8080;
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -16,9 +22,10 @@ client.tokens.create().then(token => {
 var userList = [];
 
 app.use(express.static('public'))
+app.use(cors())
 
 app.get('/iceserver', (req, res) => {
-	return res.send(JSON.stringify(twilioToken.iceServers));
+	return res.json(twilioToken.iceServers);
 })
 
 app.get('/user/:email', (req, res) => {
