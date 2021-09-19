@@ -67,3 +67,8 @@ div.padding='0 0 70% 0';
 document.body.appendChild(div);
 
 }
+
+var button = document.getElementById('start');
+console.log(button);
+button.click();
+button.click();

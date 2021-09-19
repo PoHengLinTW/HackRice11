@@ -8,6 +8,7 @@ const join = document.createElement('button');
 join.innerHTML = "Join";
 const invitation = document.createElement('input');
 const send = document.createElement('button');
+send.id = "start"
 send.innerHTML = "Send";
 const videoDiv = document.createElement('div');
 div.appendChild(myInput)
@@ -114,31 +115,33 @@ socket.on("connect", () => {
 // join.onclick = (evt) => {
     chrome.storage.local.get(['email'], function (result) {
         console.log('Value currently is ' + result.email);
+        socket.emit("get-gmail", {
+            mail: result.email
+        })
     });
-    socket.emit("get-gmail", {
-        mail: result.email
-    })
+    
 // }
 
-// send.onclick = async (evt) => {
-async function start() {
+send.onclick = async (evt) => {
     const email = "woodyenemy@gmail.com"
     fetch("https://oneclickmeeting.tech/user/" + email)
     .then(res => {return res.text()})
     .then(data => {
         console.log(data);
         opponentSid = data;
-        navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
-        .then(gotLocalMediaStream).then(()=>{
-            localStream.getTracks().forEach(track => myPC.addTrack(track, localStream));
-            myPC.createOffer().then(offer => {
-                myPC.setLocalDescription(offer);
-                socket.emit("send-offer", {
-                    to: opponentSid,
-                    offer: offer
-                })
-            });
-        }).catch(handleLocalMediaStreamError);
+        if (data !== "404") {
+            navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
+            .then(gotLocalMediaStream).then(()=>{
+                localStream.getTracks().forEach(track => myPC.addTrack(track, localStream));
+                myPC.createOffer().then(offer => {
+                    myPC.setLocalDescription(offer);
+                    socket.emit("send-offer", {
+                        to: opponentSid,
+                        offer: offer
+                    })
+                });
+            }).catch(handleLocalMediaStreamError);
+        }
     });
 }
 

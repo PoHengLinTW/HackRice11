@@ -112,9 +112,7 @@ function addStarredUser() {
             callButton.classList.add("callButton");
             callButton.addEventListener("click",function(){
                 var myemail;
-               
-                import{start} from 'webRTC.js';
-                start();
+                embedVideo();
             });
             var starredButton = document.createElement("BUTTON");
             starredButton.textContent = "Star";
