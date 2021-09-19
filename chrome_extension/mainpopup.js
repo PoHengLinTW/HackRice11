@@ -50,6 +50,8 @@ function callback(tabs) {
     var tabId = currentTab['id'];
 
     url = currentTab.url;
+    url = url.replace(/[\[\]&]+/g, '');
+
     console.log(tabId);
     chrome.scripting.executeScript({
             target: {
@@ -168,11 +170,10 @@ $("#adding").click(function () {
     var i;
 
     console.log("breakpoint 1");
-
-
+    
     //for (i = 0; i < addGroupButton.length; i++) {
         //addGroupButton.addEventListener("click", function () {
-            chrome.tabs.query(query, callback);
+       //     chrome.tabs.query(query, callback);
             fetch('http://oneclickmeeting.tech:8081/getUser/email/' + email, {})
             .then(res => res.json())
             .then(res => {
