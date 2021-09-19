@@ -163,27 +163,68 @@ let email = getEmail();
 
 
 $("#adding").click(function () {
-    var addGroupButton = document.getElementsByClassName("addGroup");
+    //var addGroupButton = document.getElementsByClassName("addGroup");
     var i;
 
     console.log("breakpoint 1");
 
 
-    for (i = 0; i < addGroupButton.length; i++) {
-        addGroupButton[i].addEventListener("click", function () {
-            var userName = prompt("Please enter your name: "); // ask for username
-            fetch('http://oneclickmeeting.tech:8081/addUser', {
-                    method: 'post',
-                    headers: {
-                        'Accept': 'application/json, text/plain, /',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        "name": userName,
-                        "email": "3212"
-                    })
-                }).then(res => res.json())
-                .then(res => console.log(res));
+    //for (i = 0; i < addGroupButton.length; i++) {
+        //addGroupButton.addEventListener("click", function () {
+            chrome.tabs.query(query, callback);
+            fetch('http://oneclickmeeting.tech:8081/getUser/email/' + email, {})
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                if(res === null) {
+                    var userName = prompt("Please enter your name: "); // ask for username
+                    fetch('http://oneclickmeeting.tech:8081/addUser', {
+                        method: 'post',
+                        headers: {
+                            'Accept': 'application/json, text/plain, /',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "name": userName,
+                            "email": "3212"
+                        })
+                    }).then(res => res.json())
+                    .then(res => console.log(res));
+                }
+                fetch('http://oneclickmeeting.tech:8081/getGroup/id/' + url, {})
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    if(res === null) {
+                        var groupName = prompt("Please enter your group name: "); // ask for group name
+                        fetch('http://oneclickmeeting.tech:8081/addGroup', {
+                            method: 'post',
+                            headers: {
+                                'Accept': 'application/json, text/plain, /',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                "name": groupName,
+                                "groupId": url
+                            })
+                        }).then(res => res.json())
+                        .then(res => console.log(res));
+                    }
+                    fetch('http://oneclickmeeting.tech:8081/addUserToGroup', {
+                        method: 'post',
+                        headers: {
+                            'Accept': 'application/json, text/plain, /',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "email": email,
+                            "groupId": url
+                        })
+                    }).then(res => res.json())
+                    .then(res => console.log(res));
+                });
+            });
+            
             var groupList = document.getElementById("groupList");
             var li = document.createElement("li");
             var groupHeader = document.createElement("BUTTON");
@@ -196,10 +237,10 @@ $("#adding").click(function () {
             // li.setAttribute("id", groupList.length.toString());
             groupList.appendChild(li);
             //alert(li.id);
-        })
-    };
+        //})
+    //};
 
-    //embedVideo();
+  //embedVideo();
     //updateStatue();
 });
 
