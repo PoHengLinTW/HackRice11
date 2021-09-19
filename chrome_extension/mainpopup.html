@@ -1,0 +1,41 @@
+<!--initial popup-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>OneClickMeeting</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <!--script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script-->
+    <!--script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script-->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script-->
+    <link rel="stylesheet" href="mainpopup.css">
+</head>
+
+<body>
+    <h1> Meet With One Click ! </h1>
+    <p> NOTE: To import contact groups, please navigate to Canvas/Course/People page. </p>
+    <button type="button" class="collapsible"> Starred Contacts </button>
+    <div class="content">
+        <table id="starredUsers" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <input class="starredButton" type="button" value="star"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <button type="button" class="collapsible"> Groups </button>
+    <div class="content">
+        <ul id="groupList">
+            <li>
+                <button type="button" class="addGroup" id = "adding"> Add Group </button>
+            </li>
+        </ul>
+    </div>
+    <script src="mainpopup.js"></script>
+
+</body>
+
+</html>

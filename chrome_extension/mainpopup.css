@@ -1,0 +1,142 @@
+body {
+    width: 500px;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 12px;
+}
+
+button {
+    color: white;
+    font-size: 14px;
+    background-color: #60affc;
+    border-radius: 5px;
+    border: 1px white solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+table {
+    border: none;
+    width: 100%;
+}
+
+td:nth-child(1) {
+    padding: 0.5rem;
+    text-align: left;
+    width: 1px;
+    overflow: hidden;
+}
+
+td:nth-child(2) {
+    padding: 0.5rem;
+    text-align: left;
+    overflow: hidden;
+}
+
+td:nth-child(3) {
+    padding: 0.5rem;
+    text-align: left;
+    overflow: hidden;
+}
+
+td:nth-child(4) {
+    padding: 0.5rem;
+    text-align: right;
+    overflow: hidden;
+}
+
+td:nth-child(5) {
+    padding: 0.5rem;
+    text-align: right;
+    overflow: hidden;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color: rgb(60, 47, 240);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    width: 93%;
+    background-color: white;
+    font-size: 14px;
+}
+
+.addGroup {
+    background-color: rgb(41, 41, 44);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.star {
+    position: relative;
+
+    display: inline-block;
+    width: 0;
+    height: 0;
+
+    margin-left: .9em;
+    margin-right: .9em;
+    margin-bottom: 1.2em;
+
+    border-right: .3em solid transparent;
+    border-bottom: .7em solid #FC0;
+    border-left: .3em solid transparent;
+}
+
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}

@@ -1,0 +1,35 @@
+{
+    "manifest_version": 3,
+    "name": "OneClickMeeting",
+    "version": "0.1",
+    "background": {
+    "service_worker": "background.js"
+   },
+   "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": ["socket.io-4.2.0-min.js", "webRTC.js"]
+    }],
+    "action": {
+        "default_icon": "images/icon.png",
+        "default_popup": "mainpopup.html"
+    },
+    "icons": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage",
+        "identity",
+        "tabs",
+        "identity.email",
+        "background"
+    ],
+    "host_permissions": [
+        "https://*/"
+    ]
+}
