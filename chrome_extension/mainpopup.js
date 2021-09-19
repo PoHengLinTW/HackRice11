@@ -40,7 +40,6 @@ function dropDown() {
             }
         });
     }
-
 }
 
 function callback(tabs) {
@@ -49,7 +48,6 @@ function callback(tabs) {
     console.log('currentTab');
     console.log(currentTab);
     var tabId = currentTab['id'];
-
 
     url = currentTab.url;
     console.log(tabId);
@@ -76,7 +74,7 @@ function callback(tabs) {
 }
 
 function loadStarredUsers() {
-
+    
 }
 
 function loadGroups() {
@@ -112,6 +110,12 @@ function addStarredUser() {
             var callButton = document.createElement("BUTTON");
             callButton.textContent = "Video Call";
             callButton.classList.add("callButton");
+            callButton.addEventListener("click",function(){
+                var myemail;
+               
+                import{start} from 'webRTC.js';
+                start();
+            });
             var starredButton = document.createElement("BUTTON");
             starredButton.textContent = "Star";
             starredButton.classList.add("starredButton");
