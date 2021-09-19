@@ -2,12 +2,6 @@
     "manifest_version": 3,
     "name": "OneClickMeeting",
     "version": "0.1",
-    "content_scripts": [{
-        "matches": [
-            "<all_urls>"
-        ],
-        "js": ["mainpopup.js"]
-    }],
     "background": {
     "service_worker": "background.js"
    },
@@ -24,8 +18,10 @@
         "activeTab",
         "scripting",
         "storage",
-        "tabs",
         "identity",
-        "identity.email"
+        "tabs",
+        "identity.email",
+        "background"
     ]
+  // "content_security_policy": { "extension_pages":"script-src 'self' 'unsafe-eval'; object-src 'self';"}
 }

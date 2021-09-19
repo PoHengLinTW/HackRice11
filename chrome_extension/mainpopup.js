@@ -12,8 +12,15 @@
     });
 } catch (error) {
 
-}
-*/
+}*/
+
+
+
+var url;
+
+var query = { active: true, currentWindow: true };
+var currentTab
+
 
 function dropDown() {
     var coll = document.getElementsByClassName("collapsible");
@@ -40,6 +47,9 @@ function callback(tabs) {
     console.log('currentTab');
     console.log(currentTab);
     var tabId = currentTab['id'];
+
+
+    url = currentTab.url;
     console.log(tabId);
     chrome.scripting.executeScript({
             target: {
@@ -59,6 +69,8 @@ function callback(tabs) {
         },
         injectionResults
     );
+
+   console.log(url);
 }
 
 function loadFrequentUser() {
@@ -76,32 +88,14 @@ function addStarredUser() {
         addStarredButton[i].addEventListener("click", function () {
             var table = document.getElementByClassName("starredUsers");
             var row = table.insertRow(0);
-
+          
             // 5 columns: online status, profile, name, video call button, starred button
         })
     };
 }
 
-function addGroup() {
-    var addGroupButton = document.getElementsByClassName("addGroup");
-    var i;
-    for (i = 0; i < addGroupButton.length; i++) {
-        addGroupButton[i].addEventListener("click", function () {
-            var groupList = document.getElementById("groupCollapsible");
-            var li = document.createElement("li");
-            var groupCollapse = document.createElement("BUTTON");
-            groupCollapse.innerHTML = "Fill the group number, APP!"; // need webpage information to get group number
-            groupCollapse.setAttribute("class", "groupCollapsible");
 
-            // HERE: need to load the group members if the group already exists, otherwise the empty group
 
-            li.appendChild(groupCollapse);
-            li.setAttribute("id", groupList.length.toString());
-            groupList.appendChild(li);
-            //alert(li.id);
-        })
-    };
-}
 
 function videoCall() {
 
@@ -122,10 +116,9 @@ return logged_in_user;
 }
 
 function embedVideo(){
-var query = {
-        active: true,
-        currentWindow: true
-    };
+//var query = {
+//        active: true,
+ //       currentWindow: true};
 
     chrome.tabs.query(query, callback);
 }
@@ -134,10 +127,41 @@ var query = {
 dropDown();
 loadFrequentUser();
 loadGroups();
-addStarredUser();
-addGroup();
+//addStarredUser();
+//addGroup();
 videoCall();
 
 
-
 let email = getEmail();
+
+
+$("#adding").click(function() {
+    var addGroupButton = document.getElementsByClassName("addGroup");
+    var i;
+
+    console.log("breakpoint 1");
+
+
+    for (i = 0; i < addGroupButton.length; i++) {
+        addGroupButton[i].addEventListener("click", function () {
+            var groupList = document.getElementById("groupCollapsible");
+            var li = document.createElement("li");
+            var groupCollapse = document.createElement("BUTTON");
+            groupCollapse.innerHTML = "Fill the group number, APP!"; // need webpage information to get group number
+            groupCollapse.setAttribute("class", "groupCollapsible");
+
+            // HERE: need to load the group members if the group already exists, otherwise the empty group
+
+            li.appendChild(groupCollapse);
+            li.setAttribute("id", groupList.length.toString());
+            groupList.appendChild(li);
+            //alert(li.id);
+
+        })
+    };
+
+embedVideo();
+//updateStatue();
+});
+
+

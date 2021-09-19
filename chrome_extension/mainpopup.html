@@ -5,7 +5,10 @@
 <head>
     <meta charset="utf-8">
     <title>OneClickMeeting</title>
-    <script src="mainpopup.js"></script>
+    <script src="jquery-3.6.0.min.js"></script>
+    <!--script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script-->
+    <!--script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script-->
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script-->
     <link rel="stylesheet" href="mainpopup.css">
 </head>
 
@@ -21,11 +24,14 @@
     <div class="content">
         <ul id="groupCollapsible">
             <li>
-                <button type="button" class="addGroup"> Add Group </button>
+                <button type="button" class="addGroup" id="adding"> Add Group </button>
+                <div id = "userinfo">
+                </div>
             </li>
         </ul>
     </div>
-    <script type="module" src="mainpopup.js"></script>
+     
+    <script src="mainpopup.js"></script>
 </body>
 
 </html>
