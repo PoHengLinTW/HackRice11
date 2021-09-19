@@ -279,7 +279,7 @@ function setGroupName(groupName) {
         embedVideo();
     });
     var starredButton = document.createElement("BUTTON");
-    starredButton.textContent = "Start";
+    starredButton.textContent = "Star";
     starredButton.classList.add("starredButton");
 
     statusCell.appendChild(dot);
