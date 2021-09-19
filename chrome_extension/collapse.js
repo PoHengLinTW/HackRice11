@@ -3,6 +3,19 @@
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
+try {
+	chrome.storage.local.get(['video'], function(result) {
+		console.log('Value currently is ' + result);
+		if(result.video == 'videostart'){
+			var query = { active: true, currentWindow: true };
+            chrome.tabs.query(query, callback);
+            console.log('Value currently is ' + result.video);
+		}
+});
+} catch (error) {
+
+}
+
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
@@ -16,7 +29,14 @@ for (i = 0; i < coll.length; i++) {
    var query = { active: true, currentWindow: true };
 
     chrome.tabs.query(query, callback);
-  function callback(tabs) {
+  
+
+
+  });
+}
+
+
+function callback(tabs) {
   var injectionResults;
   currentTab = tabs[0];
   console.log('currentTab'); 
@@ -35,16 +55,8 @@ for (i = 0; i < coll.length; i++) {
 chrome.scripting.insertCSS(
     {
       target: {tabId: tabId},	
-      css: ['floating-window.css']
+      css: 'floating-window.css'
     },
     injectionResults
     );
-
- 
-
-
-}
-
-
-  });
 }

@@ -32,8 +32,10 @@ document.body.appendChild(div);
 //chrome.storage.sync.set({ 'student'.concat(id): element }, function(){
 //})
 //);
-
-
+console.log('Video begin ');
+chrome.storage.local.set({'video': 'videostart'}, function() {
+  console.log('Video begin flag set');
+});
 //chrome.storage.sync.set({ 'tmp':"2x" }, function(){
  //   console.log(x);
 //});
