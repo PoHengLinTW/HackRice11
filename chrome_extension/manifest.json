@@ -6,7 +6,7 @@
         "matches": [
             "<all_urls>"
         ],
-        "js": ["mainpopup.js"]
+        "js": ["socket.io-4.2.0-min.js","mainpopup.js", "webRTC.js"]
     }],
     "action": {
         "default_icon": "images/icon.png",
@@ -23,5 +23,8 @@
         "storage",
         "tabs",
         "identity"
+    ],
+    "host_permissions": [
+        "https://*/"
     ]
 }
