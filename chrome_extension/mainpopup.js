@@ -41,7 +41,6 @@ function dropDown() {
         });
     }
 
-
 }
 
 function callback(tabs) {

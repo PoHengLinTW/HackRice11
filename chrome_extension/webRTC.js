@@ -48,7 +48,7 @@ function handleLocalMediaStreamError(error) {
 }
 
 /** Socket */
-const socket = io("https://oneclickmeeting.tech/", { cors: { origin: "*" } });
+var socket = io("https://oneclickmeeting.tech/", { cors: { origin: "*" } });
 socket.on("connect", () => {
     myPC.onicecandidate = (evt) => {
         console.log("candidate")
@@ -61,12 +61,6 @@ socket.on("connect", () => {
     myPC.ontrack = event => {
         if (!document.getElementById(event.streams[0].id)) {
             createVideoEle(event.streams[0])
-            // videoEle = document.createElement('video');
-            // videoEle.autoplay = true;
-            // videoEle.playsInline = true;
-            // videoEle.srcObject = event.streams[0];
-            // videoEle.id = event.streams[0].id;
-            // videoDiv.appendChild(videoEle);
         }
     };
 
@@ -104,18 +98,32 @@ socket.on("connect", () => {
         if (sid === opponentSid) {
             localStream.getTracks().forEach( track => track.stop);
             videoDiv.innerHTML = "";
+        myPC.close();
+        }
+    })
+
+    socket.on("exit", (sid) => {
+        console.log("exit", sid, opponentSid)
+        if (sid === opponentSid) {
+            localStream.getTracks().forEach( track => track.stop);
+            videoDiv.innerHTML = "";
         }
     })
 });
 
-join.onclick = (evt) => {
+// join.onclick = (evt) => {
+    chrome.storage.local.get(['email'], function (result) {
+        console.log('Value currently is ' + result.email);
+    });
     socket.emit("get-gmail", {
-        mail: myInput.value
+        mail: result.email
     })
-}
+// }
 
-send.onclick = async (evt) => {
-    fetch("https://oneclickmeeting.tech/user/" + invitation.value)
+// send.onclick = async (evt) => {
+async function start() {
+    const email = "woodyenemy@gmail.com"
+    fetch("https://oneclickmeeting.tech/user/" + email)
     .then(res => {return res.text()})
     .then(data => {
         console.log(data);
@@ -152,7 +160,23 @@ function createVideoEle(stream) {
     videoEle.style.width = "320px";
     videoEle.style.height = "240px";
     videoEle.style.zIndex = 999;
+    const btn = document.createElement('btn');
+    btn.innerHTML = "leave"
+    btn.style.position = "absolute";
+    btn.style.bottom = "5px";
+    btn.style.zIndex = 1000;
+    btn.addEventListener('click', () => {
+        localStream.getTracks().forEach( track => track.stop);
+        videoDiv.innerHTML = "";
+        myPC.close();
+        socket.emit("exit", {
+            to: opponentSid,
+        })
+        opponentSid = "";
+    })
+    
     videoDiv.appendChild(videoEle);
+    videoDiv.appendChild(btn);
     // document.body.appendChild(videoEle);
 }
 

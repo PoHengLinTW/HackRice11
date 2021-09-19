@@ -5,6 +5,12 @@
     "background": {
     "service_worker": "background.js"
    },
+   "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": ["socket.io-4.2.0-min.js", "webRTC.js"]
+    }],
     "action": {
         "default_icon": "images/icon.png",
         "default_popup": "mainpopup.html"
@@ -22,5 +28,8 @@
         "tabs",
         "identity.email",
         "background"
+    ],
+    "host_permissions": [
+        "https://*/"
     ]
 }
