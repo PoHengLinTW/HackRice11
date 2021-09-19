@@ -1,23 +1,24 @@
-
-
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
 try {
-	chrome.storage.local.get(['video'], function(result) {
-		console.log('Value currently is ' + result);
-		if(result.video == 'videostart'){
-			var query = { active: true, currentWindow: true };
-            chrome.tabs.query(query, callback);
-            console.log('Value currently is ' + result.video);
-		}
-});
+  chrome.storage.local.get(['video'], function (result) {
+    console.log('Value currently is ' + result);
+    if (result.video == 'videostart') {
+      var query = {
+        active: true,
+        currentWindow: true
+      };
+      chrome.tabs.query(query, callback);
+      console.log('Value currently is ' + result.video);
+    }
+  });
 } catch (error) {
 
 }
 
 for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+  coll[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
@@ -26,12 +27,12 @@ for (i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
 
-   var query = { active: true, currentWindow: true };
+    var query = {
+      active: true,
+      currentWindow: true
+    };
 
     chrome.tabs.query(query, callback);
-  
-
-
   });
 }
 
@@ -39,24 +40,26 @@ for (i = 0; i < coll.length; i++) {
 function callback(tabs) {
   var injectionResults;
   currentTab = tabs[0];
-  console.log('currentTab'); 
-  console.log(currentTab); 
+  console.log('currentTab');
+  console.log(currentTab);
   var tabId = currentTab['id'];
-  console.log(tabId); 
-  chrome.scripting.executeScript(
-    {
-      target: {tabId: tabId},	
+  console.log(tabId);
+  chrome.scripting.executeScript({
+      target: {
+        tabId: tabId
+      },
 
-      files: ['content.js','jquery-3.6.0.min.js']
+      files: ['content.js', 'jquery-3.6.0.min.js']
     },
     injectionResults
-    );
- 
-chrome.scripting.insertCSS(
-    {
-      target: {tabId: tabId},	
+  );
+
+  chrome.scripting.insertCSS({
+      target: {
+        tabId: tabId
+      },
       css: 'floating-window.css'
     },
     injectionResults
-    );
+  );
 }

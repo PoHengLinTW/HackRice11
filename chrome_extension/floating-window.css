@@ -1,8 +1,9 @@
 #videopan {
-   display: block;
-   position: relative;
-   padding: 0 0 70% 0;
+    display: block;
+    position: relative;
+    padding: 0 0 70% 0;
 }
+
 #videopan video {
     position: absolute;
     bottom: 0;

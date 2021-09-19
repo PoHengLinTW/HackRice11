@@ -1,3 +1,4 @@
+<!--initial popup-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -10,17 +11,21 @@
 
 <body>
     <h1> Meet With One Click ! </h1>
-    <p> NOTE: To import contact groups, please navigate to People section on Canvas. </p>
-    <button class="collapsible"> Frequent Contacts </button>
+    <p> NOTE: To import contact groups, please navigate to Canvas/Course/People page. </p>
+    <button type="button" class="collapsible"> Starred Contacts </button>
     <div class="content">
-        <ul>
-            <li>Instructor</li>
-            <li>TA</li>
-            <li>TA</li>
+        <table class="starredUsers"></table>
+    </div>
+    <br>
+    <button type="button" class="collapsible"> Groups </button>
+    <div class="content">
+        <ul id="groupCollapsible">
+            <li>
+                <button type="button" class="addGroup"> Add Group </button>
+            </li>
         </ul>
     </div>
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="collapse.js"></script>
+    <script src="mainpopup.js"></script>
 </body>
 
 </html>
