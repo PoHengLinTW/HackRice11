@@ -16,7 +16,7 @@ chrome.action.onClicked.addListener( function(activeTab) {
 
 chrome.identity.getProfileUserInfo(function(info) { email = info.email;
 chrome.storage.local.set({'email': email}, function() {
-  console.log('Video begin flag set');
+  console.log('Get email');
 });
  });
 
