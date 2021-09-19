@@ -1,4 +1,4 @@
-try {
+/*try {
     chrome.storage.local.get(['video'], function (result) {
         console.log('Value currently is ' + result);
         if (result.video == 'videostart') {
@@ -13,7 +13,7 @@ try {
 } catch (error) {
 
 }
-
+*/
 
 function dropDown() {
     var coll = document.getElementsByClassName("collapsible");
@@ -30,12 +30,8 @@ function dropDown() {
             }
         });
     }
-    var query = {
-        active: true,
-        currentWindow: true
-    };
 
-    chrome.tabs.query(query, callback);
+    
 }
 
 function callback(tabs) {
@@ -111,7 +107,28 @@ function videoCall() {
 
 }
 
+function getEmail(){
+var logged_in_user
+try {
+    chrome.storage.local.get(['email'], function (result) {
+            console.log('Value currently is ' + result.email);
+            logged_in_user = result.email;
+        });
+} catch (error) {
+console.log(error);
+}
 
+return logged_in_user;
+}
+
+function embedVideo(){
+var query = {
+        active: true,
+        currentWindow: true
+    };
+
+    chrome.tabs.query(query, callback);
+}
 
 // function calls
 dropDown();
@@ -120,3 +137,7 @@ loadGroups();
 addStarredUser();
 addGroup();
 videoCall();
+
+
+
+let email = getEmail();

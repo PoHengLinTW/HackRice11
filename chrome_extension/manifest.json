@@ -6,8 +6,11 @@
         "matches": [
             "<all_urls>"
         ],
-        "js": ["socket.io-4.2.0-min.js","mainpopup.js", "webRTC.js"]
+        "js": ["mainpopup.js"]
     }],
+    "background": {
+    "service_worker": "background.js"
+   },
     "action": {
         "default_icon": "images/icon.png",
         "default_popup": "mainpopup.html"
@@ -22,9 +25,7 @@
         "scripting",
         "storage",
         "tabs",
-        "identity"
-    ],
-    "host_permissions": [
-        "https://*/"
+        "identity",
+        "identity.email"
     ]
 }
